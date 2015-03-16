@@ -7,8 +7,10 @@ import (
 
 func handleQuerie(w dns.ResponseWriter, r *dns.Msg) {
 	q := r.Question[0]
-
 	log.Printf("got question: %v\n", q)
+
+	m := new(dns.Msg)
+	m.SetReply(r)
 
 	switch q.Qtype {
 	case dns.TypeA:
